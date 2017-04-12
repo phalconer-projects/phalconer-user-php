@@ -1,0 +1,43 @@
+<?php
+
+use phalconer\i18n\translation\source\adapter\EchoAdapter;
+
+$t = isset($t) ? $t : isset($this->translator) ? $this->translator->getAdapter() : new EchoAdapter();
+$this->tag->setTitle($t->_('Sign up'));
+?>
+<div class="row">
+    <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?= $this->tag->getTitle() ?></h3>
+            </div>
+            <div class="panel-body">
+                <form id="registration-form" action="/user/register" method="post">
+                    <input name="<?= $this->security->getTokenKey() ?>" value="<?= $this->security->getToken() ?>" type="hidden">
+                    <div class="form-group field-register-form-email required">
+                        <label class="control-label" for="register-form-email"><?= $t->_('Email') ?></label>
+                        <input id="register-form-email" class="form-control" name="register-form[email]" aria-required="true" type="text">
+
+                        <div class="help-block"></div>
+                    </div>
+                    <div class="form-group field-register-form-username required has-error">
+                        <label class="control-label" for="register-form-username"><?= $t->_('Username') ?></label>
+                        <input id="register-form-username" class="form-control" name="register-form[username]" aria-required="true" aria-invalid="true" type="text">
+
+                        <div class="help-block"></div>
+                    </div>
+                    <div class="form-group field-register-form-password required has-success">
+                        <label class="control-label" for="register-form-password"><?= $t->_('Password') ?></label>
+                        <input id="register-form-password" class="form-control" name="register-form[password]" aria-required="true" aria-invalid="false" type="password">
+
+                        <div class="help-block"></div>
+                    </div>                
+                    <button type="submit" class="btn btn-success btn-block"><?= $t->_('Sign up') ?></button>
+                </form>
+            </div>
+        </div>
+        <p class="text-center">
+            <?= $this->tag->linkTo('/user/login', $t->_('Already registered? Sign in!')) ?>
+        </p>
+    </div>
+</div>

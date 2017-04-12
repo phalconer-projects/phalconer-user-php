@@ -1,0 +1,11 @@
+default:
+    autoload:
+        '': %paths.base%/test
+    suites:
+        user:
+            paths:
+                - %paths.base%/features/story
+            contexts:
+                - phalconer\test\story\UserContext
+            filters:
+                tags: '@user'
